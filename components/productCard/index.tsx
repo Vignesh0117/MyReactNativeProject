@@ -24,9 +24,7 @@ const ProductCard = (props: any) => {
 
   return (
     <View style={[productCardStyle.container, rootStyle]}>
-      <View style={{flex: amount ? 1.5 : 0}}>
-        <Image source={source} style={imageStyle} />
-      </View>
+      <Image source={source} style={imageStyle} />
       <View style={productCardStyle.detailsStyle}>
         <Text
           numberOfLines={1}
@@ -59,9 +57,9 @@ const ProductCard = (props: any) => {
       {showCounter && (
         <View
           style={{
-            flex: 1.7,
             flexDirection: 'row',
             alignItems: 'center',
+            justifyContent: 'center',
           }}>
           <CounterComponent
             value={countState}

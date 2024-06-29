@@ -2,17 +2,17 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React, {useState} from 'react';
 import {
-  Alert,
-  FlatList,
-  Image,
-  Text,
-  TouchableOpacity,
   View,
+  Text,
+  Image,
+  FlatList,
+  TouchableOpacity,
+  Alert,
 } from 'react-native';
-import {merchantDetailsStyle} from './style';
 import TopBar from '../../components/topBar';
 import {useNavigation} from '@react-navigation/native';
 import ProductCard from '../../components/productCard';
+import {styles} from './style';
 
 const DATA = [
   {
@@ -133,9 +133,7 @@ const comboData = [
   },
 ];
 
-const MerchantScreen = (props: any) => {
-  const {} = props;
-
+const MerchantScreen = () => {
   const navigation = useNavigation();
 
   const [values, setValues] = useState<any>({});
@@ -147,12 +145,8 @@ const MerchantScreen = (props: any) => {
     icon: chipData[1]?.icon,
   });
 
-  const handleChipPress = (id: any, title: string, icon: any) => {
-    setSelectedChip({id, title, icon});
-  };
-
   const handleIncrement = (id: any, amount: string) => {
-    const numericAmount = parseFloat(amount.replace('$', ''));
+    const numericAmount = parseFloat(amount?.replace('$', ''));
     setValues((prevValues: any) => ({
       ...prevValues,
       [id]: (prevValues[id] || 0) + 1,
@@ -162,18 +156,22 @@ const MerchantScreen = (props: any) => {
   };
 
   const handleDecrement = (id: any, amount: string) => {
-    const numericAmount = parseFloat(amount.replace('$', ''));
+    const numericAmount = parseFloat(amount?.replace('$', ''));
     setValues((prevValues: any) => {
-      const newValue = Math.max((prevValues[id] || 0) - 1, 0);
+      const newValue = Math?.max((prevValues[id] || 0) - 1, 0);
       return {
         ...prevValues,
         [id]: newValue,
       };
     });
-    setSelectedProductCount((prevCount: any) => Math.max(prevCount - 1, 0));
+    setSelectedProductCount((prevCount: any) => Math?.max(prevCount - 1, 0));
     setSelectedProductAmount((prevAmount: any) =>
-      Math.max(prevAmount - numericAmount, 0),
+      Math?.max(prevAmount - numericAmount, 0),
     );
+  };
+
+  const handleChipPress = (id: any, title: string, icon: any) => {
+    setSelectedChip({id, title, icon});
   };
 
   const handleBackPress = () => {
@@ -190,15 +188,15 @@ const MerchantScreen = (props: any) => {
           borderRightColor: '#e8e8e8',
           paddingRight: 13,
         }}>
-        <View style={merchantDetailsStyle.storeIconSection}>
+        <View style={styles.storeIconSection}>
           <Image
             source={data?.icon}
-            style={merchantDetailsStyle.storeIcon}
+            style={styles.storeIcon}
             resizeMode="contain"
           />
-          <Text style={merchantDetailsStyle.title}>{data?.title}</Text>
+          <Text style={styles.title}>{data?.title}</Text>
         </View>
-        <Text style={merchantDetailsStyle.subText}>{data?.description}</Text>
+        <Text style={styles.subText}>{data?.description}</Text>
       </View>
     );
   };
@@ -206,39 +204,34 @@ const MerchantScreen = (props: any) => {
   const Chip = ({text, icon, selected, onPress}: any) => (
     <TouchableOpacity
       style={[
-        merchantDetailsStyle.chip,
-        {backgroundColor: selected ? '#ca4d34' : '#FFF'},
+        styles.chip,
+        {
+          backgroundColor: selected ? '#ca4d34' : '#FFF',
+          borderWidth: selected ? 0 : 1,
+        },
       ]}
       onPress={onPress}>
-      <Text
-        style={[
-          merchantDetailsStyle.chipText,
-          {color: selected ? '#FFF' : 'gray'},
-        ]}>
+      <Text style={[styles.chipText, {color: selected ? '#FFF' : 'gray'}]}>
         {text}
       </Text>
       {icon && (
-        <Image
-          source={icon}
-          style={merchantDetailsStyle.chipIcon}
-          resizeMode="contain"
-        />
+        <Image source={icon} style={styles.chipIcon} resizeMode="contain" />
       )}
     </TouchableOpacity>
   );
 
   return (
-    <View style={merchantDetailsStyle.container}>
-      <View style={merchantDetailsStyle.firstSection}>
+    <View style={styles.container}>
+      <View style={styles.header}>
         <TopBar
           title="Merchant Details"
           handleBackPress={handleBackPress}
-          rootStyle={merchantDetailsStyle.topBarStyle}
+          rootStyle={styles.topBarStyle}
         />
-        <View style={merchantDetailsStyle.productCardSection}>
+        <View style={styles.productCardSection}>
           <ProductCard
             source={require('.../../../assets/food1.jpg')}
-            imageStyle={merchantDetailsStyle.imageStyle}
+            imageStyle={styles.imageStyle}
             title="Chicken Lalapan Gresik"
             descriptionIcon={require('../../assets/location.png')}
             description="4831 Kildeer Boyunton Beach, Florida 33456"
@@ -246,19 +239,21 @@ const MerchantScreen = (props: any) => {
             descriptionStyle={{width: 280}}
           />
         </View>
-        <View style={merchantDetailsStyle.storeDetails}>
-          <FlatList
-            data={DATA}
-            renderItem={({item, index}: any) => (
-              <Item data={item} count={index} />
-            )}
-            keyExtractor={(item: any) => item?.id}
-            horizontal={true}
-            contentContainerStyle={merchantDetailsStyle.flatListStyle}
-            showsHorizontalScrollIndicator={false}
-          />
+        <View style={styles.infoRow}>
+          <View style={styles.storeDetails}>
+            <FlatList
+              data={DATA}
+              renderItem={({item, index}: any) => (
+                <Item data={item} count={index} />
+              )}
+              keyExtractor={(item: any) => item?.id}
+              horizontal={true}
+              contentContainerStyle={styles.flatListStyle}
+              showsHorizontalScrollIndicator={false}
+            />
+          </View>
         </View>
-        <View style={merchantDetailsStyle.chipDetails}>
+        <View style={styles.chipDetails}>
           <FlatList
             data={chipData}
             horizontal
@@ -267,45 +262,42 @@ const MerchantScreen = (props: any) => {
               <Chip
                 text={item?.title}
                 icon={item?.icon}
-                selected={item?.id === selectedChip.id}
+                selected={item?.id === selectedChip?.id}
                 onPress={() =>
                   handleChipPress(item?.id, item?.title, item?.icon)
                 }
               />
             )}
-            contentContainerStyle={merchantDetailsStyle.chipContainer}
+            contentContainerStyle={styles.chipContainer}
             showsHorizontalScrollIndicator={false}
           />
         </View>
       </View>
-      <View style={merchantDetailsStyle.secondSection}>
-        <View style={merchantDetailsStyle.headerTextSection}>
-          <Text style={merchantDetailsStyle.headerText}>
-            {selectedChip?.title}
-          </Text>
+      <View style={styles.list}>
+        <View style={styles.headerTextSection}>
+          <Text style={styles.headerText}>{selectedChip?.title}</Text>
           {selectedChip?.icon && (
             <Image
               source={selectedChip?.icon}
-              style={merchantDetailsStyle.headerIcon}
+              style={styles.headerIcon}
               resizeMode="contain"
             />
           )}
         </View>
-        <View style={merchantDetailsStyle.comboContainerSx}>
+        <View style={styles.comboContainerSx}>
           <FlatList
             data={comboData}
             keyExtractor={(item: any) => item?.id}
             renderItem={({item}: any) => (
               <ProductCard
                 source={item?.image}
-                imageStyle={merchantDetailsStyle.comboImageStyle}
+                imageStyle={styles.comboImageStyle}
                 title={item?.title}
-                titleStyle={merchantDetailsStyle.comboTextSx}
+                titleStyle={styles.comboTextSx}
                 description={item?.description}
                 showCounter={true}
                 descriptionStyle={{width: 150}}
                 amount={item?.amount}
-                // amount={`$${item?.amount.toFixed(2)}`}
                 countState={values[item?.id] || 0}
                 handleIncrement={() => handleIncrement(item?.id, item?.amount)}
                 handleDecrement={() => handleDecrement(item?.id, item?.amount)}
@@ -314,21 +306,28 @@ const MerchantScreen = (props: any) => {
             showsVerticalScrollIndicator={false}
           />
         </View>
-        <View style={merchantDetailsStyle.floatingButton}>
+      </View>
+      <View style={styles.footerSection}>
+        <View style={styles.floatingButton}>
           <View style={{flexDirection: 'row', alignItems: 'center', gap: 20}}>
-            <Text style={merchantDetailsStyle.totalAmountStyle}>
+            <Text style={styles.totalAmountStyle}>
               {`$ ${selectedProductAmount}.00`}
             </Text>
-            <Text style={merchantDetailsStyle.totalCountStyle}>
-              {`${selectedProductCount} Food Selected`}
-            </Text>
+            <View style={styles.totalCountStyle}>
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontWeight: '600',
+                  color: '#c8361e',
+                }}>{`${selectedProductCount} Food Selected`}</Text>
+            </View>
           </View>
           <TouchableOpacity
             onPress={() => Alert.alert('Cart added successfully!')}
             activeOpacity={1}>
             <Image
               source={require('../../assets/down3.png')}
-              style={merchantDetailsStyle.rightArrowStyle}
+              style={styles.rightArrowStyle}
             />
           </TouchableOpacity>
         </View>

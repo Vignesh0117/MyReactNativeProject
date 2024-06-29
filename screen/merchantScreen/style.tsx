@@ -1,52 +1,46 @@
 import {StyleSheet} from 'react-native';
 
-export const merchantDetailsStyle = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f6f8fa',
-    gap: 20,
+    backgroundColor: '#f8f8f8',
   },
 
   topBarStyle: {
     backgroundColor: '#fff',
-    marginTop: 20,
+    marginTop: 30,
   },
 
-  firstSection: {
-    flex: 3.6,
+  header: {
+    padding: 16,
     backgroundColor: '#fff',
-    borderBottomLeftRadius: 12,
-    borderBottomRightRadius: 12,
-    paddingHorizontal: 20,
+    borderBottomLeftRadius: 16,
+    borderBottomRightRadius: 16,
+    marginBottom: 16,
+  },
+
+  productCardSection: {
+    borderBottomWidth: 1,
+    borderColor: '#e8e8e8',
+    paddingBottom: 18,
+    marginBottom: 12,
   },
 
   imageStyle: {
     width: 55,
     height: 55,
     borderRadius: 12,
+    marginRight: 14,
   },
 
-  secondSection: {
-    position: 'relative',
-    flex: 5,
-    backgroundColor: '#fff',
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
-    paddingHorizontal: 20,
-    paddingVertical: 20,
-  },
-
-  productCardSection: {
-    borderBottomWidth: 1,
-    borderColor: '#e8e8e8',
-    paddingBottom: 24,
-    marginBottom: 24,
+  infoRow: {
+    marginTop: 8,
   },
 
   // Store details style
 
   storeDetails: {
-    marginBottom: 20,
+    marginBottom: 15,
   },
 
   storeIcon: {
@@ -74,7 +68,7 @@ export const merchantDetailsStyle = StyleSheet.create({
   },
 
   flatListStyle: {
-    gap: 12,
+    gap: 18,
   },
 
   // Chip style
@@ -102,7 +96,6 @@ export const merchantDetailsStyle = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 10,
     borderRadius: 20,
-    borderWidth: 1,
     borderColor: 'lightgray',
   },
 
@@ -111,10 +104,20 @@ export const merchantDetailsStyle = StyleSheet.create({
     fontWeight: '600',
   },
 
-  // Second section
+  //  section two
+
+  list: {
+    flex: 1,
+    paddingHorizontal: 16,
+    backgroundColor: '#FFF',
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+    paddingTop: 16,
+  },
 
   headerTextSection: {
     flexDirection: 'row',
+    alignItems: 'center',
     gap: 5,
   },
 
@@ -133,6 +136,7 @@ export const merchantDetailsStyle = StyleSheet.create({
     width: 75,
     height: 75,
     borderRadius: 12,
+    marginRight: 14,
   },
 
   comboTextSx: {
@@ -141,21 +145,25 @@ export const merchantDetailsStyle = StyleSheet.create({
   },
 
   comboContainerSx: {
-    paddingBottom: 61,
+    paddingBottom: 25,
+  },
+
+  // footer style
+
+  footerSection: {
+    backgroundColor: '#FFFF',
+    paddingHorizontal: 16,
   },
 
   floatingButton: {
-    width: '100%',
-    position: 'absolute',
-    bottom: 0,
     flexDirection: 'row',
     backgroundColor: '#c8361e',
-    marginHorizontal: 20,
     paddingHorizontal: 20,
     paddingVertical: 12,
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'space-between',
+    marginBottom: 20,
   },
 
   rightArrowStyle: {
@@ -170,12 +178,9 @@ export const merchantDetailsStyle = StyleSheet.create({
   },
 
   totalCountStyle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#c8361e',
     backgroundColor: '#ecb2ac',
     paddingHorizontal: 14,
     paddingVertical: 4,
-    borderRadius: 14,
+    borderRadius: 20,
   },
 });

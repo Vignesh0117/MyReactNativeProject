@@ -6,7 +6,7 @@ import CustomButton from '../../components/button';
 const CommonPage = ({navigation}: any) => {
   return (
     <View style={commonPageStyles.root}>
-      <Text style={commonPageStyles.title}>Common Page</Text>
+      <Text style={commonPageStyles.title}>My React Native Task's</Text>
       <View style={commonPageStyles.buttonSection}>
         <CustomButton
           title="Register Page"

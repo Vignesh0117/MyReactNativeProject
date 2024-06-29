@@ -188,7 +188,11 @@ const RegisterPage = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TopBar title="Register Page" handleBackPress={handleBackPress} />
+      <TopBar
+        title="Register Page"
+        handleBackPress={handleBackPress}
+        rootStyle={styles.topBarStyle}
+      />
       <View style={styles.innerBox}>
         <View style={styles.top}>
           <Image source={require('../../assets/Group.png')} />
@@ -330,6 +334,10 @@ const styles = StyleSheet.create({
 
   innerBox: {
     flex: 1,
+  },
+
+  topBarStyle: {
+    paddingHorizontal: 16,
   },
 
   top: {

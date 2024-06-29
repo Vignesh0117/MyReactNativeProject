@@ -4,13 +4,13 @@ export const productCardStyle = StyleSheet.create({
   container: {
     marginTop: 20,
     flexDirection: 'row',
-    gap: 10,
   },
 
   detailsStyle: {
-    flex: 3.5,
+    flex: 1,
     flexDirection: 'column',
-    gap: 3,
+    justifyContent: 'center',
+    gap: 5,
   },
 
   titleStyleSx: {
