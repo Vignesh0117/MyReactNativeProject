@@ -338,6 +338,7 @@ const styles = StyleSheet.create({
 
   topBarStyle: {
     paddingHorizontal: 16,
+    backgroundColor: '#D6EFE7',
   },
 
   top: {
