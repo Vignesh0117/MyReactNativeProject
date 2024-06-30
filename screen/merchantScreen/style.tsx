@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
 
   topBarStyle: {
     backgroundColor: '#fff',
-    marginTop: 30,
+    marginTop: 5,
   },
 
   header: {

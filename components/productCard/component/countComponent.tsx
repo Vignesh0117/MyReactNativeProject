@@ -13,7 +13,9 @@ const CounterComponent = (props: any) => {
         disabled={value === 0}>
         <Text style={styles.buttonText}>-</Text>
       </TouchableOpacity>
-      <Text style={styles.valueText}>{value as any}</Text>
+      <View>
+        <Text style={styles.valueText}>{value}</Text>
+      </View>
       <TouchableOpacity
         style={styles.button}
         onPress={handleIncrement}
@@ -46,14 +48,14 @@ const styles = StyleSheet.create({
 
   buttonText: {
     color: '#FFFFFF',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
-    marginTop: -5,
+    marginTop: -3,
   },
 
   valueText: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: '600',
     marginHorizontal: 18,
   },
 });
