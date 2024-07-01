@@ -56,13 +56,13 @@ export const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 18,
+    fontSize: 16,
     color: '#02111A',
     fontWeight: '600',
   },
 
   subText: {
-    fontSize: 17,
+    fontSize: 16,
     color: '#9da1a1',
     fontWeight: '500',
   },
