@@ -56,13 +56,13 @@ export const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 16,
+    fontSize: 17,
     color: '#02111A',
     fontWeight: '600',
   },
 
   subText: {
-    fontSize: 16,
+    fontSize: 17,
     color: '#9da1a1',
     fontWeight: '500',
   },
@@ -146,6 +146,18 @@ export const styles = StyleSheet.create({
 
   comboContainerSx: {
     paddingBottom: 25,
+  },
+
+  noDataSx: {
+    width: 200,
+    height: 200,
+  },
+
+  noDataText: {
+    fontSize: 20,
+    color: '#02111A',
+    fontWeight: '600',
+    marginTop: -30,
   },
 
   // footer style

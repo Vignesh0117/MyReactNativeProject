@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/no-unstable-nested-components */
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -70,6 +70,7 @@ const chipData = [
 const comboData = [
   {
     id: 1,
+    category: 'Combo',
     image: require('../../assets/food1.jpg'),
     title: 'Super Family Package',
     description: '2 Chicken Wings, 2 Rice Bowl, 1 lt Coke',
@@ -77,6 +78,7 @@ const comboData = [
   },
   {
     id: 2,
+    category: 'Combo',
     image: require('../../assets/food2.jpg'),
     title: 'Chicken Super',
     description: '1 Chicken Large, 2 Pocket Tomato Jazz',
@@ -84,6 +86,7 @@ const comboData = [
   },
   {
     id: 3,
+    category: 'Food',
     image: require('../../assets/food3.jpg'),
     title: 'Beef Steak Large',
     description: '1 Beef Steak',
@@ -91,6 +94,7 @@ const comboData = [
   },
   {
     id: 4,
+    category: 'Drinks',
     image: require('../../assets/food4.jpg'),
     title: 'Special Orange Juice',
     description: '1 Orange Juice',
@@ -98,6 +102,7 @@ const comboData = [
   },
   {
     id: 5,
+    category: 'Food',
     image: require('../../assets/food5.jpg'),
     title: 'Chicken Soup',
     description: '1 Chicken Soup',
@@ -105,13 +110,15 @@ const comboData = [
   },
   {
     id: 6,
+    category: 'Combo',
     image: require('../../assets/food6.jpg'),
     title: 'Super Family Bucket Biriyani',
-    description: '2 Buget Chicken Biriyani, 2 White Rice Bowl, 1 lt Coke',
+    description: '2 Bucket Chicken Biriyani, 2 White Rice Bowl, 1 lt Coke',
     amount: '$32.00',
   },
   {
     id: 7,
+    category: 'Combo',
     image: require('../../assets/food1.jpg'),
     title: 'Super Family Package',
     description: '2 Chicken Wings, 2 Rice Bowl, 1 lt Coke',
@@ -119,6 +126,7 @@ const comboData = [
   },
   {
     id: 8,
+    category: 'Combo',
     image: require('../../assets/food2.jpg'),
     title: 'Chicken Super',
     description: '1 Chicken Large, 2 Pocket Tomato Jazz',
@@ -126,6 +134,7 @@ const comboData = [
   },
   {
     id: 9,
+    category: 'Food',
     image: require('../../assets/food3.jpg'),
     title: 'Beef Steak Large',
     description: '1 Beef Steak',
@@ -137,6 +146,7 @@ const MerchantScreen = () => {
   const navigation = useNavigation();
 
   const [values, setValues] = useState<any>({});
+  const [filteredData, setFilteredData] = useState(comboData);
   const [selectedProductCount, setSelectedProductCount] = useState<any>(0);
   const [selectedProductAmount, setSelectedProductAmount] = useState<any>(0);
   const [selectedChip, setSelectedChip] = useState<any>({
@@ -172,6 +182,17 @@ const MerchantScreen = () => {
 
   const handleChipPress = (id: any, title: string, icon: any) => {
     setSelectedChip({id, title, icon});
+  };
+
+  const filterData = (chipTitle: string) => {
+    if (chipTitle === 'All') {
+      setFilteredData(comboData);
+    } else {
+      const filtered = comboData?.filter(
+        (item: any) => item?.category === chipTitle,
+      );
+      setFilteredData(filtered);
+    }
   };
 
   const handleBackPress = () => {
@@ -219,6 +240,10 @@ const MerchantScreen = () => {
       )}
     </TouchableOpacity>
   );
+
+  useEffect(() => {
+    filterData(selectedChip?.title);
+  }, [selectedChip]);
 
   return (
     <View style={styles.container}>
@@ -285,26 +310,40 @@ const MerchantScreen = () => {
           )}
         </View>
         <View style={styles.comboContainerSx}>
-          <FlatList
-            data={comboData}
-            keyExtractor={(item: any) => item?.id}
-            renderItem={({item}: any) => (
-              <ProductCard
-                source={item?.image}
-                imageStyle={styles.comboImageStyle}
-                title={item?.title}
-                titleStyle={styles.comboTextSx}
-                description={item?.description}
-                showCounter={true}
-                descriptionStyle={{width: 150}}
-                amount={item?.amount}
-                countState={values[item?.id] || 0}
-                handleIncrement={() => handleIncrement(item?.id, item?.amount)}
-                handleDecrement={() => handleDecrement(item?.id, item?.amount)}
+          {filteredData.length > 0 ? (
+            <FlatList
+              data={filteredData}
+              keyExtractor={(item: any) => item?.id}
+              renderItem={({item}: any) => (
+                <ProductCard
+                  source={item?.image}
+                  imageStyle={styles.comboImageStyle}
+                  title={item?.title}
+                  titleStyle={styles.comboTextSx}
+                  description={item?.description}
+                  showCounter={true}
+                  descriptionStyle={{width: 150}}
+                  amount={item?.amount}
+                  countState={values[item?.id] || 0}
+                  handleIncrement={() =>
+                    handleIncrement(item?.id, item?.amount)
+                  }
+                  handleDecrement={() =>
+                    handleDecrement(item?.id, item?.amount)
+                  }
+                />
+              )}
+              showsVerticalScrollIndicator={false}
+            />
+          ) : (
+            <View style={{alignItems: 'center'}}>
+              <Image
+                source={require('../../assets/noData1.png')}
+                style={styles.noDataSx}
               />
-            )}
-            showsVerticalScrollIndicator={false}
-          />
+              <Text style={styles.noDataText}>No data found</Text>
+            </View>
+          )}
         </View>
       </View>
       <View style={styles.footerSection}>
