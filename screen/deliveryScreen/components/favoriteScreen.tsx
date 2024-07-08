@@ -1,61 +1,19 @@
 // screens/FavoritesScreen.js
-import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  FlatList,
-  StyleSheet,
-} from 'react-native';
+import React from 'react';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import BackgroundScreen from './backgroundScreen';
 
 const FavoritesScreen = () => {
-  const [favorites, setFavorites] = useState([
-    {id: '1', name: 'Pizza'},
-    {id: '2', name: 'Burger'},
-    {id: '3', name: 'Sushi'},
-  ]);
-  const [newFavorite, setNewFavorite] = useState('');
-
-  const addFavorite = () => {
-    if (newFavorite.trim() !== '') {
-      const newId = (favorites.length + 1).toString();
-      const newFavoriteItem = {id: newId, name: newFavorite};
-      setFavorites([...favorites, newFavoriteItem]);
-      setNewFavorite('');
-    }
-  };
-
-  const removeFavorite = (id: any) => {
-    const updatedFavorites = favorites.filter(item => item.id !== id);
-    setFavorites(updatedFavorites);
-  };
-
   return (
     <BackgroundScreen>
       <View style={styles.container}>
         <Text style={styles.title}>Favorite Foods</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Add a new favorite"
-          value={newFavorite}
-          onChangeText={setNewFavorite}
-        />
-        <TouchableOpacity style={styles.addButton} onPress={addFavorite}>
-          <Text style={styles.addButtonText}>Add</Text>
-        </TouchableOpacity>
-        <FlatList
-          data={favorites}
-          keyExtractor={item => item.id}
-          renderItem={({item}) => (
-            <TouchableOpacity
-              style={styles.item}
-              onPress={() => removeFavorite(item.id)}>
-              <Text style={styles.itemText}>{item.name}</Text>
-            </TouchableOpacity>
-          )}
-        />
+        <View>
+          <Image
+            source={require('../../../assets/emptyFavo.png')}
+            style={styles.favoImg}
+          />
+        </View>
       </View>
     </BackgroundScreen>
   );
@@ -101,6 +59,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'black',
     fontWeight: '600',
+  },
+
+  favoImg: {
+    width: 350,
+    height: 350,
+    marginTop: 100,
   },
 });
 

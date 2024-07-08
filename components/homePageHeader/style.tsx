@@ -34,8 +34,8 @@ export const styles = StyleSheet.create({
   },
 
   imageStyle: {
-    width: 15,
-    height: 15,
+    width: 25,
+    height: 25,
     marginLeft: 8,
   },
 

@@ -1,11 +1,13 @@
-import React, {useState, useRef} from 'react';
+import React, {useState} from 'react';
 import {deliveryScreenStyles} from '../style';
 import BackgroundScreen from './backgroundScreen';
-import {chipData} from '../utils';
-import {DrawerLayoutAndroid, View} from 'react-native';
+import {chipData, menuData} from '../utils';
+import {View} from 'react-native';
 import HomeBodyComponent from './homeBodyContent';
 import DrawerHeader from '../../../components/homePageHeader';
-import {DrawerActions, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
+import DrawerComponent from '../../../components/drawer';
+import DrawerBody from './drawerBody';
 
 const countryData = [
   {label: 'Canada', value: 'Canada'},
@@ -14,7 +16,8 @@ const countryData = [
 ];
 
 const HomePage = () => {
-  const navigation = useNavigation();
+  const navigation: any = useNavigation();
+
   const [formData, setFormData] = useState({
     country: {
       label: countryData[0]?.label,
@@ -23,6 +26,7 @@ const HomePage = () => {
     modalVisible: false,
   });
   const [selectedChip, setSelectedChip] = useState(chipData[0]?.id);
+  const [open, setOpen] = React.useState(false);
 
   const handleModalOpen = () => {
     setFormData({
@@ -38,23 +42,26 @@ const HomePage = () => {
     });
   };
 
-  const handleSelectCountry = (val: any) => {
-    setFormData({
-      ...formData,
-      country: {
-        label: val?.label,
-        value: val?.value,
-      },
-    });
-  };
-
-  // const navigateTo = (item: any) => {
-  //   navigation.navigate(item?.route);
-  //   drawer.current?.closeDrawer();
+  // const handleSelectCountry = (val: any) => {
+  //   setFormData({
+  //     ...formData,
+  //     country: {
+  //       label: val?.label,
+  //       value: val?.value,
+  //     },
+  //   });
   // };
 
+  const navigateTo = (item: any) => {
+    navigation.navigate(item?.route);
+  };
+
+  const closeDrawer = () => {
+    setOpen(false);
+  };
+
   const handleDrawerOpen = () => {
-    navigation.dispatch(DrawerActions.openDrawer());
+    setOpen(true);
   };
 
   const handleChipPress = (item: any) => {
@@ -63,47 +70,38 @@ const HomePage = () => {
 
   return (
     <BackgroundScreen>
-      <View style={deliveryScreenStyles.toolBarStyle}>
-        {/* <Toolbar
-          profileImage={require('../../../assets/dummyAvatar.png')}
-          modalState={formData?.modalVisible}
-          countryState={formData?.country}
-          countryData={countryData}
-          drawer={drawer}
-          handleModalOpen={handleModalOpen}
-          handleModalClose={handleModalClose}
-          handleSelectCountry={handleSelectCountry}
-          children={<DrawerBody menuData={menuData} navigateTo={navigateTo} />}
-          bodyContent={
-            <HomeBodyComponent
-              title="Ready to order your favorite food?"
-              foodHeaderText="Popular Food"
-              foodHeaderEnd="See all"
-              chipState={selectedChip}
-              handleChipPress={handleChipPress}
-              navigation={navigation}
-            />
-          }
-        /> */}
-        <DrawerHeader
-          handleSelectCountry={handleSelectCountry}
-          handleModalClose={handleModalClose}
-          handleModalOpen={handleModalOpen}
-          countryState={formData?.country}
-          countryData={countryData}
-          profileImage={require('../../../assets/dummyAvatar.png')}
-          modalState={formData?.modalVisible}
-          handleDrawerOpen={handleDrawerOpen}
+      <DrawerComponent
+        open={open}
+        onOpen={() => setOpen(true)}
+        onClose={() => setOpen(false)}
+        drawerContent={
+          <DrawerBody
+            menuData={menuData}
+            navigateTo={navigateTo}
+            closeDrawer={closeDrawer}
+          />
+        }>
+        <View style={deliveryScreenStyles.toolBarStyle}>
+          <DrawerHeader
+            // handleSelectCountry={handleSelectCountry}
+            handleModalClose={handleModalClose}
+            handleModalOpen={handleModalOpen}
+            countryState={formData?.country}
+            // countryData={countryData}
+            profileImage={require('../../../assets/dummyAvatar.png')}
+            modalState={formData?.modalVisible}
+            handleDrawerOpen={handleDrawerOpen}
+          />
+        </View>
+        <HomeBodyComponent
+          title="Ready to order your favorite food?"
+          foodHeaderText="Popular Food"
+          foodHeaderEnd="See all"
+          chipState={selectedChip}
+          handleChipPress={handleChipPress}
+          navigation={navigation}
         />
-      </View>
-      <HomeBodyComponent
-        title="Ready to order your favorite food?"
-        foodHeaderText="Popular Food"
-        foodHeaderEnd="See all"
-        chipState={selectedChip}
-        handleChipPress={handleChipPress}
-        navigation={navigation}
-      />
+      </DrawerComponent>
     </BackgroundScreen>
   );
 };

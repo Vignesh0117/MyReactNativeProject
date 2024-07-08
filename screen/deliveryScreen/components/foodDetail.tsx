@@ -38,7 +38,7 @@ const FoodDetails = ({navigation}: any) => {
             borderRadius: 20,
           }}
           onPress={() => {
-            navigation.navigate('Delivery Home');
+            navigation.navigate('Bottom Bar');
           }}
         />
         <Text

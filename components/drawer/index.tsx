@@ -1,20 +1,28 @@
-/* eslint-disable react/no-unstable-nested-components */
-import React from 'react';
-import {DrawerContent, createDrawerNavigator} from '@react-navigation/drawer';
-import {NavigationContainer} from '@react-navigation/native';
-import HomePage from '../../screen/deliveryScreen/components/homePage';
+import * as React from 'react';
+import {Drawer} from 'react-native-drawer-layout';
 
-const Drawer = createDrawerNavigator();
+interface DrawerComponentProps {
+  open: boolean;
+  onClose: () => void;
+  onOpen: () => void;
+  drawerContent: any;
+  children: React.ReactNode;
+}
 
-const DrawerNavigator = () => {
+export default function DrawerComponent(props: DrawerComponentProps) {
+  const {open, onClose, onOpen, children, drawerContent} = props;
+
+  const renderDrawerContent = React.useCallback(() => {
+    return <>{drawerContent}</>;
+  }, [drawerContent]);
+
   return (
-    <NavigationContainer>
-      <Drawer.Navigator
-        drawerContent={(props: any) => <DrawerContent {...props} />}>
-        <Drawer.Screen name="Home Page" component={HomePage} />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <Drawer
+      open={open}
+      onOpen={onOpen}
+      onClose={onClose}
+      renderDrawerContent={renderDrawerContent}>
+      {children}
+    </Drawer>
   );
-};
-
-export default DrawerNavigator;
+}

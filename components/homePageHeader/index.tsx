@@ -1,7 +1,6 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {Image, Modal, Text, View} from 'react-native';
-import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
+import {Image, Text, View} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import {styles} from './style';
 
 function DrawerHeader(props: any) {
@@ -10,10 +9,10 @@ function DrawerHeader(props: any) {
     handleModalOpen,
     countryState,
     handleDrawerOpen,
-    handleModalClose,
-    modalState,
-    handleSelectCountry,
-    countryData,
+    // handleModalClose,
+    // modalState,
+    // handleSelectCountry,
+    // countryData,
   } = props;
   return (
     <View style={styles.rootContainer}>
@@ -33,7 +32,7 @@ function DrawerHeader(props: any) {
           <Text style={styles.countryCode}>{countryState?.label}</Text>
           <View style={styles.imageStyle}>
             <Image
-              source={require('../../assets/Vector.png')}
+              source={require('../../assets/dropdown.png')}
               style={styles.image}
               resizeMode="contain"
             />
@@ -48,7 +47,7 @@ function DrawerHeader(props: any) {
         </TouchableOpacity>
 
         {/* Modal for country */}
-        <Modal
+        {/* <Modal
           transparent={true}
           visible={modalState}
           onRequestClose={handleModalClose}>
@@ -71,7 +70,7 @@ function DrawerHeader(props: any) {
               </ScrollView>
             </View>
           </TouchableOpacity>
-        </Modal>
+        </Modal> */}
       </View>
     </View>
   );

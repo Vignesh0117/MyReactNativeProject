@@ -11,7 +11,6 @@ import FavoritesScreen from './screen/deliveryScreen/components/favoriteScreen';
 import CartPage from './screen/deliveryScreen/components/cartPage';
 import Notifications from './screen/deliveryScreen/components/notification';
 import HomePage from './screen/deliveryScreen/components/homePage';
-import DrawerNavigator from './components/drawer';
 
 const MyTheme = {
   ...DefaultTheme,
@@ -75,11 +74,6 @@ export default function NavigationRoot() {
           name="Notifications"
           options={{headerShown: false}}
           component={Notifications}
-        />
-        <Stack.Screen
-          name="Drawer"
-          options={{headerShown: false}}
-          component={DrawerNavigator}
         />
       </Stack.Navigator>
     </NavigationContainer>
