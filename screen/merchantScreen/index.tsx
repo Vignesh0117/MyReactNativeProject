@@ -10,7 +10,6 @@ import {
   Alert,
 } from 'react-native';
 import TopBar from '../../components/topBar';
-import {useNavigation} from '@react-navigation/native';
 import ProductCard from '../../components/productCard';
 import {styles} from './style';
 
@@ -142,9 +141,7 @@ const comboData = [
   },
 ];
 
-const MerchantScreen = () => {
-  const navigation = useNavigation();
-
+const MerchantScreen = ({navigation}: any) => {
   const [values, setValues] = useState<any>({});
   const [filteredData, setFilteredData] = useState(comboData);
   const [selectedProductCount, setSelectedProductCount] = useState<any>(0);
@@ -196,7 +193,7 @@ const MerchantScreen = () => {
   };
 
   const handleBackPress = () => {
-    navigation.goBack();
+    navigation.navigate('Home');
   };
 
   const Item = (propData: any) => {

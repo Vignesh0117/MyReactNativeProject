@@ -4,7 +4,6 @@ export const commonPageStyles = StyleSheet.create({
   root: {
     flex: 1,
     backgroundColor: '#FFF',
-    gap: 10,
     marginTop: 40,
   },
 
@@ -17,11 +16,13 @@ export const commonPageStyles = StyleSheet.create({
   },
 
   buttonSection: {
-    flex: 2,
     paddingHorizontal: 16,
     flexDirection: 'row',
     gap: 10,
     marginTop: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
   },
 
   buttonStyleSx: {
