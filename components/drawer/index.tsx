@@ -2,7 +2,7 @@
 import React from 'react';
 import {DrawerContent, createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
-import BottomBar from '../../screen/deliveryScreen/components/bottomBar';
+import HomePage from '../../screen/deliveryScreen/components/homePage';
 
 const Drawer = createDrawerNavigator();
 
@@ -11,7 +11,7 @@ const DrawerNavigator = () => {
     <NavigationContainer>
       <Drawer.Navigator
         drawerContent={(props: any) => <DrawerContent {...props} />}>
-        <Drawer.Screen name="Bottom Bar" component={BottomBar} />
+        <Drawer.Screen name="Home Page" component={HomePage} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

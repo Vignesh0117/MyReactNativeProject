@@ -59,7 +59,7 @@ export const deliveryScreenStyles = StyleSheet.create({
   },
 
   toolBarStyle: {
-    flex: 1,
+    flex: 0.4,
     position: 'relative',
   },
 

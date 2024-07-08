@@ -1,11 +1,11 @@
 import React, {useState, useRef} from 'react';
 import {deliveryScreenStyles} from '../style';
 import BackgroundScreen from './backgroundScreen';
-import DrawerBody from './drawerBody';
-import {chipData, menuData} from '../utils';
+import {chipData} from '../utils';
 import {DrawerLayoutAndroid, View} from 'react-native';
 import HomeBodyComponent from './homeBodyContent';
-import Toolbar from '../../../components/toolBar';
+import DrawerHeader from '../../../components/homePageHeader';
+import {DrawerActions, useNavigation} from '@react-navigation/native';
 
 const countryData = [
   {label: 'Canada', value: 'Canada'},
@@ -13,9 +13,8 @@ const countryData = [
   {label: 'Australia', value: 'Australia'},
 ];
 
-const HomePage = (props: any) => {
-  const {navigation} = props;
-
+const HomePage = () => {
+  const navigation = useNavigation();
   const [formData, setFormData] = useState({
     country: {
       label: countryData[0]?.label,
@@ -24,7 +23,6 @@ const HomePage = (props: any) => {
     modalVisible: false,
   });
   const [selectedChip, setSelectedChip] = useState(chipData[0]?.id);
-  const drawer = useRef<DrawerLayoutAndroid>(null);
 
   const handleModalOpen = () => {
     setFormData({
@@ -50,21 +48,23 @@ const HomePage = (props: any) => {
     });
   };
 
-  const navigateTo = (item: any) => {
-    navigation.navigate(item?.route);
-    drawer.current?.closeDrawer();
+  // const navigateTo = (item: any) => {
+  //   navigation.navigate(item?.route);
+  //   drawer.current?.closeDrawer();
+  // };
+
+  const handleDrawerOpen = () => {
+    navigation.dispatch(DrawerActions.openDrawer());
   };
 
   const handleChipPress = (item: any) => {
     setSelectedChip(item?.id);
   };
 
-  console.log('drawerrrrrrr', drawer);
-
   return (
     <BackgroundScreen>
       <View style={deliveryScreenStyles.toolBarStyle}>
-        <Toolbar
+        {/* <Toolbar
           profileImage={require('../../../assets/dummyAvatar.png')}
           modalState={formData?.modalVisible}
           countryState={formData?.country}
@@ -84,8 +84,26 @@ const HomePage = (props: any) => {
               navigation={navigation}
             />
           }
+        /> */}
+        <DrawerHeader
+          handleSelectCountry={handleSelectCountry}
+          handleModalClose={handleModalClose}
+          handleModalOpen={handleModalOpen}
+          countryState={formData?.country}
+          countryData={countryData}
+          profileImage={require('../../../assets/dummyAvatar.png')}
+          modalState={formData?.modalVisible}
+          handleDrawerOpen={handleDrawerOpen}
         />
       </View>
+      <HomeBodyComponent
+        title="Ready to order your favorite food?"
+        foodHeaderText="Popular Food"
+        foodHeaderEnd="See all"
+        chipState={selectedChip}
+        handleChipPress={handleChipPress}
+        navigation={navigation}
+      />
     </BackgroundScreen>
   );
 };
