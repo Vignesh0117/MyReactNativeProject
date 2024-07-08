@@ -7,8 +7,8 @@ const BackgroundScreen = (props: any) => {
   return (
     <>
       <LinearGradient
-        colors={['#f5e3df', '#FFF']}
-        start={{x: 1.6, y: 0.5}}
+        colors={['#f5e3df', '#fff']}
+        start={{x: 1.6, y: 0.2}}
         end={{x: 1, y: 1.3}}
         locations={[0, 5]}
         style={deliveryScreenStyles.bgContainer}>
