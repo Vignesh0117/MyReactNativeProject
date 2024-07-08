@@ -3,3 +3,7 @@ export * from './textInput';
 export * from './button';
 export * from './productCard';
 export * from './topBar';
+export * from './chipComponent';
+export * from './foodCard';
+export * from './searchBar';
+export * from './toolBar';

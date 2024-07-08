@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {SafeAreaView, Text, View} from 'react-native';
 import {commonPageStyles} from './style';
 import CustomButton from '../../components/button';
 
@@ -7,7 +7,7 @@ const CommonPage = ({navigation}: any) => {
   return (
     <View style={commonPageStyles.root}>
       <Text style={commonPageStyles.title}>My React Native Task's</Text>
-      <View style={commonPageStyles.buttonSection}>
+      <SafeAreaView style={commonPageStyles.buttonSection}>
         <CustomButton
           title="Register Page"
           activeOpacity={0.7}
@@ -20,7 +20,13 @@ const CommonPage = ({navigation}: any) => {
           onPress={() => navigation.navigate('Merchant Details')}
           buttonStyleSx={commonPageStyles.buttonStyleSx}
         />
-      </View>
+        <CustomButton
+          title="Delivery Page"
+          activeOpacity={0.7}
+          onPress={() => navigation.navigate('Delivery Home')}
+          buttonStyleSx={commonPageStyles.buttonStyleSx}
+        />
+      </SafeAreaView>
     </View>
   );
 };

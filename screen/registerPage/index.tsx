@@ -12,7 +12,6 @@ import {
 import CustomTextInput from '../../components/textInput';
 import MobileInput from '../../components/mobileInput';
 import TopBar from '../../components/topBar';
-import {useNavigation} from '@react-navigation/native';
 
 const countryCodes = [
   {code: '+1', image: require('../../assets/usFlag.png')},
@@ -20,9 +19,7 @@ const countryCodes = [
   {code: '+44', image: require('../../assets/canadaFlag.png')},
 ];
 
-const RegisterPage = () => {
-  const navigation = useNavigation();
-
+const RegisterPage = ({navigation}: any) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -49,7 +46,7 @@ const RegisterPage = () => {
   });
 
   const handleBackPress = () => {
-    navigation.goBack();
+    navigation.navigate('Home');
   };
 
   const handleChangeText = (key: string, value: any) => {
