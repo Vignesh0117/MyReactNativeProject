@@ -24,7 +24,9 @@ export default function NavigationRoot() {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer theme={MyTheme}>
-      <Stack.Navigator initialRouteName="Bottom Bar">
+      <Stack.Navigator
+      // initialRouteName="Bottom Bar"
+      >
         <Stack.Screen
           name="Home"
           component={CommonPage}
