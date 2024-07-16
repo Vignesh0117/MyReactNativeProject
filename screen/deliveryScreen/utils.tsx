@@ -9,18 +9,6 @@ export const iamgeData = {
 
 export const menuData = [
   {
-    id: 1,
-    name: 'Dashboard',
-    image: require('../../assets/menu1.png'),
-    route: 'Home',
-  },
-  {
-    id: 2,
-    name: 'Get Started Page',
-    image: require('../../assets/menu2.png'),
-    route: 'Delivery Home',
-  },
-  {
     id: 3,
     name: 'Food Details',
     image: require('../../assets/menu3.png'),
@@ -34,15 +22,9 @@ export const menuData = [
   },
   {
     id: 5,
-    name: 'Merchant Page',
+    name: 'Merchant Details',
     image: require('../../assets/menu5.png'),
     route: 'Merchant Details',
-  },
-  {
-    id: 6,
-    name: 'Logout',
-    image: require('../../assets/menu6.png'),
-    route: 'Home',
   },
 ];
 

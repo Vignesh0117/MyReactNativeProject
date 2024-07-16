@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {deliveryScreenStyles} from '../style';
 import {Text, View} from 'react-native';
@@ -17,8 +18,13 @@ const HomeBodyComponent = (props: any) => {
   } = props;
   return (
     <View style={deliveryScreenStyles.bodyRootSx}>
-      <Text style={deliveryScreenStyles.bodyTitle}>{title}</Text>
-      <SearchBarWithFilter />
+      <View
+        style={{
+          marginHorizontal: 20,
+        }}>
+        <Text style={deliveryScreenStyles.bodyTitle}>{title}</Text>
+        <SearchBarWithFilter />
+      </View>
       <ChipBox
         data={chipData}
         chipState={chipState}

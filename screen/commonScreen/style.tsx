@@ -13,6 +13,7 @@ export const commonPageStyles = StyleSheet.create({
     fontWeight: '600',
     textAlign: 'center',
     marginTop: 20,
+    fontFamily: 'Montserrat-ExtraBold',
   },
 
   buttonSection: {

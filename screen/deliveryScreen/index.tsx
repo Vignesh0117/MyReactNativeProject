@@ -1,15 +1,17 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {StatusBar, Text, TouchableOpacity, View} from 'react-native';
 import {deliveryScreenStyles} from './style';
 import BackgroundScreen from './components/backgroundScreen';
 import PositionImage from './components/positionImage';
 import {iamgeData} from './utils';
+import {useNavigation} from '@react-navigation/native';
 
-const DeliveryScreen = (props: any) => {
-  const {} = props;
+const DeliveryScreen = () => {
+  const navigation: any = useNavigation();
 
   return (
     <BackgroundScreen>
+      <StatusBar backgroundColor={'#f5e3df'} />
       <View style={deliveryScreenStyles.root}>
         <PositionImage imageData={iamgeData} />
       </View>
@@ -25,7 +27,7 @@ const DeliveryScreen = (props: any) => {
         <TouchableOpacity
           activeOpacity={1}
           style={deliveryScreenStyles.getButton}
-          onPress={() => props.navigation.navigate('Bottom Bar')}>
+          onPress={() => navigation.navigate('Bottom Bar')}>
           <Text style={deliveryScreenStyles.getText}>Get Started</Text>
         </TouchableOpacity>
       </View>

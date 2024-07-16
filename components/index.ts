@@ -6,5 +6,5 @@ export * from './topBar';
 export * from './chipComponent';
 export * from './foodCard';
 export * from './searchBar';
-export * from './toolBar';
 export * from './homePageHeader';
+export * from './drawerNavigator';

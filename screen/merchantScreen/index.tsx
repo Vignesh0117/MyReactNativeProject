@@ -8,6 +8,7 @@ import {
   FlatList,
   TouchableOpacity,
   Alert,
+  StatusBar,
 } from 'react-native';
 import TopBar from '../../components/topBar';
 import ProductCard from '../../components/productCard';
@@ -193,7 +194,7 @@ const MerchantScreen = ({navigation}: any) => {
   };
 
   const handleBackPress = () => {
-    navigation.navigate('Home');
+    navigation.goBack();
   };
 
   const Item = (propData: any) => {
@@ -244,6 +245,7 @@ const MerchantScreen = ({navigation}: any) => {
 
   return (
     <View style={styles.container}>
+      <StatusBar backgroundColor={'#FFF'} />
       <View style={styles.header}>
         <TopBar
           title="Merchant Details"

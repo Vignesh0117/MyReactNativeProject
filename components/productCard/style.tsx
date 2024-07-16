@@ -16,7 +16,7 @@ export const productCardStyle = StyleSheet.create({
   titleStyleSx: {
     fontSize: 22,
     color: '#02111A',
-    fontWeight: '600',
+    fontFamily: 'Montserrat-BoldItalic',
   },
 
   descriptionBoxStyle: {

@@ -5,18 +5,19 @@ import RegisterPage from './screen/registerPage';
 import CommonPage from './screen/commonScreen';
 import MerchantScreen from './screen/merchantScreen';
 import DeliveryScreen from './screen/deliveryScreen';
-import BottomBar from './screen/deliveryScreen/components/bottomBar';
+// import BottomBar from './screen/deliveryScreen/components/bottomBar';
 import FoodDetails from './screen/deliveryScreen/components/foodDetail';
 import FavoritesScreen from './screen/deliveryScreen/components/favoriteScreen';
 import CartPage from './screen/deliveryScreen/components/cartPage';
 import Notifications from './screen/deliveryScreen/components/notification';
 import HomePage from './screen/deliveryScreen/components/homePage';
+import DrawerNavigator from './components/drawerNavigator';
 
 const MyTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    background: 'transparent',
+    background: '#FFF',
   },
 };
 
@@ -28,7 +29,7 @@ export default function NavigationRoot() {
       // initialRouteName="Bottom Bar"
       >
         <Stack.Screen
-          name="Home"
+          name="Home Common"
           component={CommonPage}
           options={{headerShown: false}}
         />
@@ -50,7 +51,7 @@ export default function NavigationRoot() {
         <Stack.Screen
           name="Bottom Bar"
           options={{headerShown: false}}
-          component={BottomBar}
+          component={DrawerNavigator}
         />
         <Stack.Screen
           name="Home Page"

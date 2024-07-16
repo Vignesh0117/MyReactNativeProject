@@ -8,8 +8,10 @@ import {
   StyleSheet,
   TouchableOpacity,
   Alert,
+  StatusBar,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import BackgroundScreen from './backgroundScreen';
 
 const FoodDetails = ({navigation}: any) => {
   const [quantity, setQuantity] = useState(1);
@@ -26,140 +28,147 @@ const FoodDetails = ({navigation}: any) => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Icon
-          name={'arrow-back'}
-          size={24}
-          color={'#02111a'}
-          style={{
-            backgroundColor: '#FFF',
-            padding: 12,
-            borderRadius: 20,
-          }}
-          onPress={() => {
-            navigation.navigate('Bottom Bar');
-          }}
-        />
-        <Text
-          style={{
-            fontSize: 20,
-            color: '#02111a',
-            fontWeight: '500',
-          }}>
-          Details
-        </Text>
-        <Icon
-          name={'heart'}
-          size={22}
-          color={'#02111a'}
-          style={{
-            backgroundColor: '#FFF',
-            padding: 12,
-            borderRadius: 20,
-          }}
-          onPress={() => {
-            Alert.alert('Food added to favoites');
-          }}
-        />
-      </View>
-      <View style={styles.content}>
-        <View style={styles.divideSection}>
-          <View>
-            <Text style={styles.title}>Biryani Bliss</Text>
-            <View style={{flexDirection: 'row', gap: 5, alignItems: 'center'}}>
-              <Image
-                source={require('../../../assets/ratingStar.png')}
-                style={styles.starImage}
-              />
-              <Text style={styles.rating}>4.8 (105 review)</Text>
-            </View>
-            <Text style={styles.price}>Price</Text>
-            <Text style={styles.title}>$7.50</Text>
-            <Text style={styles.calories}>Calories</Text>
-            <Text style={{fontSize: 16, color: '#02111a', marginTop: 6}}>
-              450 Cal
-            </Text>
-            <Text style={styles.calories}>Diameter</Text>
-            <Text style={{fontSize: 16, color: '#02111a', marginTop: 6}}>
-              15.05 cm
-            </Text>
-          </View>
-          <View style={styles.imageBox}>
-            <Image
-              source={require('../../../assets/delivery5.png')}
-              style={styles.image}
-            />
-          </View>
-        </View>
-        <View style={styles.quantityContainer}>
+    <BackgroundScreen>
+      <StatusBar backgroundColor={'#f5e3df'} />
+      <View style={styles.container}>
+        <View style={styles.header}>
           <Icon
-            name={'remove-outline'}
-            size={20}
-            color={'#FFF'}
+            name={'arrow-back'}
+            size={24}
+            color={'#02111a'}
             style={{
-              backgroundColor: '#FF7F50',
-              padding: 8,
+              backgroundColor: '#FFF',
+              padding: 12,
               borderRadius: 20,
             }}
-            onPress={decrementQuantity}
+            onPress={() => {
+              navigation.navigate('Bottom Bar');
+            }}
           />
-          <Text style={styles.quantity}>
-            {quantity > 9 ? quantity : `0${quantity}`}
+          <Text
+            style={{
+              fontSize: 20,
+              color: '#02111a',
+              fontWeight: '500',
+            }}>
+            Details
           </Text>
           <Icon
-            name={'add'}
-            size={20}
-            color={'#FFF'}
+            name={'heart'}
+            size={22}
+            color={'#02111a'}
             style={{
-              backgroundColor: '#FF7F50',
-              padding: 8,
+              backgroundColor: '#FFF',
+              padding: 12,
               borderRadius: 20,
             }}
-            onPress={incrementQuantity}
+            onPress={() => {
+              Alert.alert('Food added to favoites');
+            }}
           />
         </View>
-        <Text style={styles.size}>Size</Text>
-        <View style={styles.sizeContainer}>
-          {['Small', 'Medium', 'Large'].map(item => (
-            <TouchableOpacity
-              key={item}
-              style={[
-                styles.sizeButton,
-                size === item && styles.selectedSizeButton,
-              ]}
-              onPress={() => setSize(item)}>
-              <Text style={size === item ? styles.colorText : styles.sizeText}>
-                {item}
+        <View style={styles.content}>
+          <View style={styles.divideSection}>
+            <View>
+              <Text style={styles.title}>Biryani Bliss</Text>
+              <View
+                style={{flexDirection: 'row', gap: 5, alignItems: 'center'}}>
+                <Image
+                  source={require('../../../assets/ratingStar.png')}
+                  style={styles.starImage}
+                />
+                <Text style={styles.rating}>4.8 (105 review)</Text>
+              </View>
+              <Text style={styles.price}>Price</Text>
+              <Text style={styles.title}>$7.50</Text>
+              <Text style={styles.calories}>Calories</Text>
+              <Text style={{fontSize: 16, color: '#02111a', marginTop: 6}}>
+                450 Cal
               </Text>
-            </TouchableOpacity>
-          ))}
+              <Text style={styles.calories}>Diameter</Text>
+              <Text style={{fontSize: 16, color: '#02111a', marginTop: 6}}>
+                15.05 cm
+              </Text>
+            </View>
+            <View style={styles.imageBox}>
+              <Image
+                source={require('../../../assets/delivery5.png')}
+                style={styles.image}
+              />
+            </View>
+          </View>
+          <View style={styles.quantityContainer}>
+            <Icon
+              name={'remove-outline'}
+              size={20}
+              color={'#FFF'}
+              style={{
+                backgroundColor: '#FF7F50',
+                padding: 8,
+                borderRadius: 20,
+              }}
+              onPress={decrementQuantity}
+            />
+            <Text style={styles.quantity}>
+              {quantity > 9 ? quantity : `0${quantity}`}
+            </Text>
+            <Icon
+              name={'add'}
+              size={20}
+              color={'#FFF'}
+              style={{
+                backgroundColor: '#FF7F50',
+                padding: 8,
+                borderRadius: 20,
+              }}
+              onPress={incrementQuantity}
+            />
+          </View>
+          <Text style={styles.size}>Size</Text>
+          <View style={styles.sizeContainer}>
+            {['Small', 'Medium', 'Large'].map(item => (
+              <TouchableOpacity
+                key={item}
+                style={[
+                  styles.sizeButton,
+                  size === item && styles.selectedSizeButton,
+                ]}
+                onPress={() => setSize(item)}>
+                <Text
+                  style={size === item ? styles.colorText : styles.sizeText}>
+                  {item}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+          <Text
+            style={styles.description}
+            numberOfLines={5}
+            ellipsizeMode="tail">
+            Hyderabadi Biryani is a culinary masterpiece that tantalizes the
+            senses with its aromatic spices, tender meat, and fragrant basmati
+            rice. Originating from the vibrant culinary masterpiece that
+            tantalizes the senses city of Hyderabad in India, this iconic dish
+          </Text>
         </View>
-        <Text style={styles.description} numberOfLines={5} ellipsizeMode="tail">
-          Hyderabadi Biryani is a culinary masterpiece that tantalizes the
-          senses with its aromatic spices, tender meat, and fragrant basmati
-          rice. Originating from the vibrant culinary masterpiece that
-          tantalizes the senses city of Hyderabad in India, this iconic dish
-        </Text>
+        <View style={styles.footer}>
+          <TouchableOpacity
+            style={styles.addButton}
+            onPress={() => {
+              Alert.alert('Food added to cart');
+            }}
+            activeOpacity={1}>
+            <Text style={styles.addButtonText}>Add to Cart</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-      <View style={styles.footer}>
-        <TouchableOpacity
-          style={styles.addButton}
-          onPress={() => {
-            Alert.alert('Food added to cart');
-          }}
-          activeOpacity={1}>
-          <Text style={styles.addButtonText}>Add to Cart</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    </BackgroundScreen>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF5F0',
   },
   header: {
     flexDirection: 'row',

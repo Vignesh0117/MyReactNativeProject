@@ -59,14 +59,13 @@ export const deliveryScreenStyles = StyleSheet.create({
   },
 
   toolBarStyle: {
-    flex: 0.4,
+    flex: 0.9,
     position: 'relative',
   },
 
   // Body Content Style
 
   bodyRootSx: {
-    marginHorizontal: 20,
     marginTop: 7,
   },
 
@@ -82,6 +81,7 @@ export const deliveryScreenStyles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginVertical: 20,
+    marginHorizontal: 20,
   },
 
   bodyHeaderTitle: {

@@ -1,11 +1,12 @@
 import React from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
+import {SafeAreaView, StatusBar, Text, View} from 'react-native';
 import {commonPageStyles} from './style';
 import CustomButton from '../../components/button';
 
 const CommonPage = ({navigation}: any) => {
   return (
     <View style={commonPageStyles.root}>
+      <StatusBar backgroundColor={'#FFF'} />
       <Text style={commonPageStyles.title}>My React Native Task's</Text>
       <SafeAreaView style={commonPageStyles.buttonSection}>
         <CustomButton

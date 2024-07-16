@@ -7,17 +7,19 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {menuData} from '../utils';
 
-const DrawerBody = (props: any) => {
-  const {menuData, navigateTo, closeDrawer} = props;
+const DrawerBody = ({navigation}: any) => {
+  // const {menuData, navigateTo, closeDrawer} = props;
 
   const handleMenuClick = (item: any) => {
-    navigateTo(item);
-    closeDrawer();
+    // navigateTo(item);
+    navigation.navigate(item);
+    navigation.closeDrawer();
   };
 
   const handleCloseDrawer = () => {
-    closeDrawer();
+    navigation.closeDrawer();
   };
 
   return (

@@ -5,6 +5,7 @@ import {
   Image,
   SafeAreaView,
   ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   View,
@@ -46,7 +47,7 @@ const RegisterPage = ({navigation}: any) => {
   });
 
   const handleBackPress = () => {
-    navigation.navigate('Home');
+    navigation.goBack();
   };
 
   const handleChangeText = (key: string, value: any) => {
@@ -185,6 +186,7 @@ const RegisterPage = ({navigation}: any) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar backgroundColor={'#D6EFE7'} />
       <TopBar
         title="Register Page"
         handleBackPress={handleBackPress}
@@ -350,8 +352,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 14,
     color: '#02111A',
-    fontWeight: '600',
     marginTop: 12,
+    fontFamily: 'Montserrat-Bold',
   },
 
   center: {

@@ -65,7 +65,10 @@ const FoodList = (props: any) => {
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    marginLeft: 20,
+  },
+
   cardContainer: {
     alignItems: 'center',
     marginRight: 15,
